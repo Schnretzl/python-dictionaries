@@ -10,7 +10,30 @@ def open_ticket(service_tickets, ticket_id):
 #end function
 
 def update_ticket(service_tickets, ticket_id):
-    pass
+    ticket_data = service_tickets.get(ticket_id)
+    if not ticket_data:
+        print("Ticket not found.")
+        return
+    #end if
+    if ticket_data["Status"] == "Closed":
+        reopen = input("Reopen ticket? (y/n): ")
+        if reopen == "y":
+            service_tickets[ticket_id]["Status"] = "Open"
+            print("Ticket reopened.")
+        else:
+            print("Ticket remains closed.")
+        #end if
+    elif ticket_data["Status"] == "Open":
+        close = input("Close ticket? (y/n): ")
+        if close == "y":
+            service_tickets[ticket_id]["Status"] = "Closed"
+            print("Ticket closed.")
+        else:
+            print("Ticket remains open.")
+        #end if
+    #end if
+
+    return
 #end function
 
 def display_tickets(status):
@@ -28,7 +51,7 @@ def get_ticket_number():
             print(f"An error occurred: {e}")
             continue
         else:
-            return ticket_number
+            return f"Ticket{int(ticket_number):03}"
         #end try
     #end while
 #end function

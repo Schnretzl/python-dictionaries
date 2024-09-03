@@ -1,7 +1,7 @@
 from problem2functions import open_ticket, update_ticket, display_tickets, get_ticket_number
 
 next_ticket_id = 1
-service_tickets = {}
+service_tickets = {"Ticket001": {"Customer": "John Doe", "Issue": "My computer won't start", "Status": "Open"}}
 
 while True:
     print("Please select a menu option:")
