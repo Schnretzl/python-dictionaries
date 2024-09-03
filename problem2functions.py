@@ -36,8 +36,14 @@ def update_ticket(service_tickets, ticket_id):
     return
 #end function
 
-def display_tickets(status):
-    pass
+def display_tickets(service_tickets, status):
+    for ticket in service_tickets:
+        if service_tickets[ticket]["Status"] == "Closed" and status in ["closed", "all"]:
+            print(f"{ticket}:\n - Customer: {service_tickets[ticket]['Customer']}\n - Issue: {service_tickets[ticket]['Issue']}\n - Status: {service_tickets[ticket]['Status']}")
+        elif service_tickets[ticket]["Status"] == "Open" and status in ["open", "all"]:
+            print(f"{ticket}:\n - Customer: {service_tickets[ticket]['Customer']}\n - Issue: {service_tickets[ticket]['Issue']}\n - Status: {service_tickets[ticket]['Status']}")
+        #end if
+    #end for
 #end function
 
 def get_ticket_number():
@@ -53,6 +59,17 @@ def get_ticket_number():
         else:
             return f"Ticket{int(ticket_number):03}"
         #end try
+    #end while
+#end function
+
+def get_ticket_status_type():
+    while True:
+        status_type = input("Enter the ticket status to display (Open/Closed/All): ")
+        if status_type.lower() in ["open", "closed", "all"]:
+            return status_type
+        else:
+            print("Please enter a valid status type.")
+        #end if
     #end while
 #end function
     

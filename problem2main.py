@@ -1,7 +1,10 @@
-from problem2functions import open_ticket, update_ticket, display_tickets, get_ticket_number
+from problem2functions import open_ticket, update_ticket, display_tickets, get_ticket_number, get_ticket_status_type
 
-next_ticket_id = 1
-service_tickets = {"Ticket001": {"Customer": "John Doe", "Issue": "My computer won't start", "Status": "Open"}}
+next_ticket_id = 4
+service_tickets = {"Ticket000": {"Customer": "John Doe", "Issue": "My computer won't start", "Status": "Closed"},
+                    "Ticket001": {"Customer": "Jane Doe", "Issue": "My printer won't print", "Status": "Open"},
+                    "Ticket002": {"Customer": "Joe Smith", "Issue": "My computer is slow", "Status": "Open"},
+                    "Ticket003": {"Customer": "John Smith", "Issue": "My phone won't charge", "Status": "Closed"}}
 
 while True:
     print("Please select a menu option:")
@@ -29,7 +32,8 @@ while True:
         ticket_number = get_ticket_number()
         update_ticket(service_tickets, ticket_number)
     elif menu_option == 3:
-        display_tickets()
+        status_type = get_ticket_status_type()
+        display_tickets(service_tickets, status_type)
     else:
         break
     #end if
